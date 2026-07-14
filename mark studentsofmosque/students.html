@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>بيانات الطلاب | مسجد قباء</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=20260709-student-info-full-pdf-v1">
+  </head>
+  <body data-page="students">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="الصفحة الرئيسية">
+        <span class="brand-mark brand-logo-mark">
+          <img src="assets/qobaa-logo.png" alt="">
+        </span>
+        <span>
+          <strong>مسجد قباء</strong>
+          <small>بيانات الطلاب</small>
+        </span>
+      </a>
+      <nav class="nav-actions" aria-label="روابط النظام">
+        <a class="admin-nav-link" href="admin.html">لوحة الإدارة</a>
+        <a class="home-nav-link" href="index.html">صفحة البحث</a>
+      </nav>
+    </header>
+
+    <main class="page-shell student-info-shell" id="student-info-main">
+      <section class="student-info-page" aria-labelledby="student-info-title">
+        <div class="student-info-hero">
+          <div class="title-block">
+            <p class="eyebrow">سجل بيانات الطلاب</p>
+            <h1 id="student-info-title">بيانات الطلاب</h1>
+            <p class="lead">واجهة مستقلة لعرض أسماء الطلاب المرتبطة بحلقات المسجد، بدون تعديل بيانات العلامات الحالية.</p>
+          </div>
+          <div class="student-info-actions">
+            <a class="secondary-button student-source-link" id="student-info-source-link" href="#" target="_blank" rel="noreferrer">فتح حلقات المسجد</a>
+            <a class="secondary-button student-edit-link" id="student-info-edit-link" href="#" target="_blank" rel="noreferrer">تعديل الحلقات</a>
+            <button class="secondary-button student-pdf-button" id="student-info-pdf-button" type="button">تحويل إلى PDF</button>
+          </div>
+        </div>
+
+        <div class="student-info-summary" aria-label="ملخص بيانات الطلاب">
+          <div class="student-info-stat">
+            <span>عدد الطلاب</span>
+            <strong id="student-info-count">0</strong>
+          </div>
+          <div class="student-info-stat">
+            <span>الصفوف</span>
+            <strong id="student-info-grade-summary">-</strong>
+          </div>
+          <div class="student-info-stat">
+            <span>الحلقات</span>
+            <strong id="student-info-teacher">-</strong>
+          </div>
+          <div class="student-info-stat">
+            <span>عدد المدرسين</span>
+            <strong id="student-info-school-count">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="student-info-tools" aria-label="أدوات تصفية بيانات الطلاب">
+        <div class="field">
+          <label for="student-info-search">بحث عن طالب</label>
+          <input id="student-info-search" type="search" autocomplete="off" placeholder="اكتب الاسم أو الحلقة أو المدرس">
+        </div>
+        <div class="field">
+          <label for="student-info-section-filter">الحلقة</label>
+          <select id="student-info-section-filter">
+            <option value="">كل الحلقات</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="student-info-grade-filter">الصف</label>
+          <select id="student-info-grade-filter">
+            <option value="">كل الصفوف</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="student-info-school-filter">المدرس</label>
+          <select id="student-info-school-filter">
+            <option value="">كل المدرسين</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="student-info-table-panel" aria-labelledby="student-info-table-title">
+        <div class="section-heading">
+          <h2 id="student-info-table-title">سجل الطلاب</h2>
+          <p class="form-message" id="student-info-result-summary" aria-live="polite"></p>
+        </div>
+
+        <div class="student-info-table-wrap">
+          <table class="student-info-table">
+            <thead id="student-info-table-head"></thead>
+            <tbody id="student-info-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div id="student-info-print-root" class="student-info-print-root" aria-hidden="true"></div>
+
+    <script src="mosque-rings-data.js?v=20260709-imported-student-data-v1"></script>
+    <script src="student-info-data.js?v=20260709-imported-student-data-v1"></script>
+    <script src="student-records.js?v=20260709-student-profile-edit-v1"></script>
+    <script src="students.js?v=20260709-student-info-full-pdf-v1"></script>
+  </body>
+</html>

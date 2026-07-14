@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>لوحة الإدارة | نظام علامات الطلاب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=20260709-imported-student-data-v1">
+  </head>
+  <body data-page="admin">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="الصفحة الرئيسية">
+        <span class="brand-mark" data-brand-mark>ق</span>
+        <span>
+          <strong data-institution-name>مسجد قباء</strong>
+          <small data-report-title>نتائج الامتحانات الدورية</small>
+        </span>
+      </a>
+      <nav class="nav-actions" aria-label="روابط النظام">
+        <a href="index.html">صفحة البحث</a>
+      </nav>
+    </header>
+
+    <main class="page-shell admin-shell">
+      <section class="login-panel" id="admin-login-panel">
+        <div class="title-block">
+          <p class="eyebrow">منطقة الإدارة</p>
+          <h1>تسجيل الدخول</h1>
+          <p class="lead">أدخل كلمة المرور لإدارة الطلاب والنتائج.</p>
+        </div>
+
+        <form class="login-form" id="admin-login-form">
+          <label for="admin-password">كلمة المرور</label>
+          <div class="search-row">
+            <input id="admin-password" type="password" autocomplete="current-password" placeholder="كلمة المرور">
+            <button class="primary-button" type="submit">دخول</button>
+          </div>
+          <p class="form-message" id="login-message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="admin-workspace" id="admin-workspace" hidden>
+        <div class="admin-header">
+          <div class="title-block">
+            <p class="eyebrow">لوحة الإدارة</p>
+            <h1>إدارة علامات الطلاب</h1>
+          </div>
+          <div class="button-group">
+            <button class="secondary-button" id="new-student-button" type="button">طالب جديد</button>
+            <a class="secondary-button" id="student-info-button" href="students.html">بيانات الطلاب</a>
+            <a class="secondary-button" id="mosque-rings-button" href="rings.html">حلقات المسجد</a>
+            <a class="secondary-button" id="monthly-probe-button" href="monthly.html">السبر الشهري</a>
+            <button class="secondary-button" id="export-data-button" type="button">تصدير البيانات</button>
+            <button class="ghost-button danger-text" id="reset-data-button" type="button">تفريغ البيانات</button>
+            <button class="ghost-button" id="logout-button" type="button">خروج</button>
+          </div>
+        </div>
+
+        <div class="stats-grid" aria-label="ملخص البيانات">
+          <div class="stat-box">
+            <span>عدد الطلاب</span>
+            <strong id="stat-students">0</strong>
+          </div>
+          <div class="stat-box">
+            <span>متوسط النتائج</span>
+            <strong id="stat-average">0%</strong>
+          </div>
+          <div class="stat-box">
+            <span>آخر حفظ</span>
+            <strong id="stat-save">محلي</strong>
+          </div>
+        </div>
+
+        <nav class="grade-tabs" id="admin-grade-tabs" aria-label="أقسام الصفوف">
+          <button class="grade-tab active" type="button" data-admin-group="صف سابع وثامن" aria-selected="true">
+            <span>صف سابع وثامن</span>
+            <strong data-group-count>0</strong>
+          </button>
+          <button class="grade-tab" type="button" data-admin-group="صف سادس" aria-selected="false">
+            <span>صف سادس</span>
+            <strong data-group-count>0</strong>
+          </button>
+          <button class="grade-tab" type="button" data-admin-group="صف خامس" aria-selected="false">
+            <span>صف خامس</span>
+            <strong data-group-count>0</strong>
+          </button>
+        </nav>
+
+        <section class="ranking-panel" aria-labelledby="ranking-title">
+          <div class="ranking-header">
+            <div>
+              <h2 id="ranking-title">ترتيب الطلاب حسب العلامة</h2>
+              <p class="muted">خاص بالإدارة، ويعتمد على المواد المحددة بأنها محسوبة في المجموع.</p>
+            </div>
+            <div class="ranking-filter">
+              <label for="ranking-section-filter">الحلقة</label>
+              <select id="ranking-section-filter">
+                <option value="">كل الحلقات</option>
+              </select>
+            </div>
+            <button class="secondary-button" id="print-ranking-button" type="button">طباعة الترتيب PDF</button>
+            <button class="secondary-button" id="print-section-students-button" type="button">طباعة شهادات الحلقة PDF</button>
+            <button class="secondary-button" id="print-section-students-landscape-button" type="button">طباعة شهادات الحلقة أفقيًا PDF</button>
+            <button class="secondary-button certificate-button" id="print-success-appreciation-button" type="button">تحميل شهادات الناجحين PDF</button>
+          </div>
+
+          <div class="ranking-table-wrap">
+            <table class="ranking-table">
+              <thead>
+                <tr>
+                  <th>الترتيب</th>
+                  <th>الطالب</th>
+                  <th>الحلقة</th>
+                  <th>المجموع</th>
+                  <th>النسبة</th>
+                  <th>التقدير</th>
+                </tr>
+              </thead>
+              <tbody id="ranking-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="ranking-panel section-ranking-panel" aria-labelledby="section-ranking-title">
+          <div class="section-ranking-header">
+            <div>
+              <h2 id="section-ranking-title">ترتيب الحلقات</h2>
+              <p class="muted">يعرض متوسط كل حلقة وترتيب الحلقات حسب المعدل النهائي أو حسب مادة محددة.</p>
+            </div>
+            <div class="ranking-filter">
+              <label for="section-subject-filter">المادة</label>
+              <select id="section-subject-filter">
+                <option value="">كل المواد</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="section-ranking-grid">
+            <section class="section-ranking-block" aria-labelledby="section-final-ranking-title">
+              <div class="section-ranking-block-header">
+                <h3 id="section-final-ranking-title">حسب المعدل النهائي</h3>
+                <span id="section-final-ranking-summary">0 حلقة</span>
+              </div>
+              <div class="ranking-table-wrap">
+                <table class="ranking-table section-ranking-table">
+                  <thead>
+                    <tr>
+                      <th>الترتيب</th>
+                      <th>الحلقة</th>
+                      <th>عدد الطلاب</th>
+                      <th>المعدل</th>
+                      <th>التقدير</th>
+                    </tr>
+                  </thead>
+                  <tbody id="section-final-ranking-body"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="section-ranking-block" aria-labelledby="section-subject-ranking-title">
+              <div class="section-ranking-block-header">
+                <h3 id="section-subject-ranking-title">حسب المادة</h3>
+                <span id="section-subject-ranking-summary">اختر مادة</span>
+              </div>
+              <div class="ranking-table-wrap">
+                <table class="ranking-table section-ranking-table">
+                  <thead>
+                    <tr>
+                      <th>الترتيب</th>
+                      <th>الحلقة</th>
+                      <th>عدد الطلاب</th>
+                      <th>متوسط العلامة</th>
+                      <th>النسبة</th>
+                    </tr>
+                  </thead>
+                  <tbody id="section-subject-ranking-body"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <div class="admin-grid">
+          <aside class="manager-panel">
+            <label for="admin-search">بحث عن طالب</label>
+            <input id="admin-search" type="search" autocomplete="off" placeholder="اكتب جزءًا من الاسم">
+            <div class="student-list" id="admin-student-list" aria-live="polite"></div>
+          </aside>
+
+          <section class="editor-panel" aria-labelledby="editor-title">
+            <div class="section-heading">
+              <h2 id="editor-title">بيانات الطالب</h2>
+              <p class="form-message" id="editor-message" aria-live="polite"></p>
+            </div>
+
+            <form id="student-editor-form" class="student-form">
+              <input type="hidden" id="student-id">
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="student-name">اسم الطالب</label>
+                  <input id="student-name" type="text" required>
+                </div>
+                <div class="field">
+                  <label for="student-class">الصف أو الفئة</label>
+                  <input id="student-class" type="text" placeholder="مثال: الفئة الثالثة">
+                </div>
+                <div class="field wide">
+                  <label for="student-section">الشعبة أو الحلقة</label>
+                  <input id="student-section" type="text" placeholder="مثال: حلقة الصحابي أنس بن مالك">
+                </div>
+                <div class="field wide">
+                  <label for="student-notes">ملاحظات</label>
+                  <textarea id="student-notes" rows="3" placeholder="ملاحظات اختيارية"></textarea>
+                </div>
+              </div>
+
+              <div class="marks-header">
+                <h3>المواد والعلامات</h3>
+                <button class="secondary-button compact-button" id="add-subject-button" type="button">إضافة مادة</button>
+              </div>
+
+              <div class="subjects-table-wrap">
+                <table class="subjects-edit-table">
+                  <thead>
+                    <tr>
+                      <th>المادة</th>
+                      <th>العلامة</th>
+                      <th>العلامة العظمى</th>
+                      <th>يحسب</th>
+                      <th>حذف</th>
+                    </tr>
+                  </thead>
+                  <tbody id="subjects-editor-body"></tbody>
+                </table>
+              </div>
+
+              <div class="settings-panel">
+                <h3>إعدادات التقرير</h3>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="institution-name-input">اسم المؤسسة</label>
+                    <input id="institution-name-input" type="text">
+                  </div>
+                  <div class="field">
+                    <label for="report-title-input">عنوان التقرير</label>
+                    <input id="report-title-input" type="text">
+                  </div>
+                  <div class="field wide">
+                    <label for="logo-url-input">رابط أو مسار الشعار</label>
+                    <input id="logo-url-input" type="text" placeholder="مثال: assets/logo.png">
+                  </div>
+                  <div class="field">
+                    <label for="signature-name-input">توقيع الإدارة</label>
+                    <input id="signature-name-input" type="text">
+                  </div>
+                  <div class="field">
+                    <label for="admin-password-input">كلمة مرور الإدارة</label>
+                    <input id="admin-password-input" type="password">
+                  </div>
+                </div>
+              </div>
+
+              <div class="editor-actions">
+                <button class="primary-button" type="submit">حفظ الطالب</button>
+                <button class="secondary-button" id="print-selected-button" type="button">طباعة النتيجة</button>
+                <button class="secondary-button" id="print-selected-landscape-button" type="button">طباعة أفقية</button>
+                <button class="secondary-button certificate-button" id="print-appreciation-button" type="button">شهادة تقدير PDF</button>
+                <button class="secondary-button" id="export-selected-button" type="button">تصدير الطالب</button>
+                <button class="ghost-button danger-text" id="delete-student-button" type="button">حذف الطالب</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div id="print-root" class="print-root" aria-hidden="true"></div>
+
+    <script src="data.js?v=20260704-subject-name-v1"></script>
+    <script src="script.js?v=20260708-ring-name-edit-v1"></script>
+  </body>
+</html>

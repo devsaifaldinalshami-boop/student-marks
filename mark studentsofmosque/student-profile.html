@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ملف الطالب | مسجد قباء</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=20260709-student-profile-edit-v1">
+  </head>
+  <body data-page="student-profile">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="الصفحة الرئيسية">
+        <span class="brand-mark brand-logo-mark">
+          <img src="assets/qobaa-logo.png" alt="">
+        </span>
+        <span>
+          <strong>مسجد قباء</strong>
+          <small>ملف الطالب</small>
+        </span>
+      </a>
+      <nav class="nav-actions" aria-label="روابط النظام">
+        <a class="admin-nav-link" href="admin.html">لوحة الإدارة</a>
+        <a class="students-nav-link" href="students.html">بيانات الطلاب</a>
+      </nav>
+    </header>
+
+    <main class="page-shell student-profile-shell" id="student-profile-main">
+      <section class="student-profile-panel" aria-labelledby="student-profile-title">
+        <div class="student-profile-hero">
+          <div class="title-block">
+            <p class="eyebrow">ملف الطالب</p>
+            <h1 id="student-profile-title">-</h1>
+            <p class="lead" id="student-profile-subtitle">-</p>
+          </div>
+          <div class="student-profile-actions">
+            <a class="secondary-button student-profile-ring-link" id="student-profile-ring-link" href="rings.html">فتح الحلقة</a>
+            <a class="secondary-button student-profile-back" href="students.html">رجوع إلى بيانات الطلاب</a>
+          </div>
+        </div>
+
+        <div class="student-profile-summary" aria-label="ملخص ملف الطالب">
+          <div class="student-profile-stat">
+            <span>الحلقة</span>
+            <strong id="student-profile-ring">-</strong>
+          </div>
+          <div class="student-profile-stat">
+            <span>المدرس</span>
+            <strong id="student-profile-teacher">-</strong>
+          </div>
+          <div class="student-profile-stat">
+            <span>الفئة</span>
+            <strong id="student-profile-category">-</strong>
+          </div>
+          <div class="student-profile-stat">
+            <span>الصف</span>
+            <strong id="student-profile-grade">-</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="student-profile-panel student-profile-details" aria-labelledby="student-profile-details-title">
+        <div class="section-heading student-profile-details-heading">
+          <h2 id="student-profile-details-title">معلومات الطالب</h2>
+          <div class="student-profile-edit-actions">
+            <button class="secondary-button compact-button" id="student-profile-edit-button" type="button">تعديل المعلومات</button>
+            <button class="primary-button compact-button" id="student-profile-save-button" type="button" hidden>حفظ</button>
+            <button class="ghost-button compact-button" id="student-profile-cancel-button" type="button" hidden>إلغاء</button>
+          </div>
+        </div>
+        <p class="form-message student-profile-edit-message" id="student-profile-message" aria-live="polite"></p>
+        <div class="student-profile-info-grid" id="student-profile-info-grid"></div>
+      </section>
+    </main>
+
+    <script src="mosque-rings-data.js?v=20260709-student-profile-edit-v1"></script>
+    <script src="student-info-data.js?v=20260709-student-profile-edit-v1"></script>
+    <script src="student-records.js?v=20260709-student-profile-edit-v1"></script>
+    <script src="student-profile.js?v=20260709-student-profile-edit-v1"></script>
+  </body>
+</html>

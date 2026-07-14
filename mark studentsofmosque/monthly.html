@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>السبر الشهري | مسجد قباء</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=20260709-imported-student-data-v1">
+  </head>
+  <body data-page="monthly-probe">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="الصفحة الرئيسية">
+        <span class="brand-mark brand-logo-mark">
+          <img src="assets/qobaa-logo.png" alt="">
+        </span>
+        <span>
+          <strong>مسجد قباء</strong>
+          <small>السبر الشهري</small>
+        </span>
+      </a>
+      <nav class="nav-actions" aria-label="روابط النظام">
+        <a class="admin-nav-link" href="admin.html">لوحة الإدارة</a>
+        <a class="students-nav-link" href="students.html">بيانات الطلاب</a>
+        <a class="rings-nav-link" href="rings.html">حلقات المسجد</a>
+      </nav>
+    </header>
+
+    <main class="page-shell monthly-probe-shell" id="monthly-probe-main">
+      <section class="monthly-probe-page" aria-labelledby="monthly-probe-title">
+        <div class="monthly-probe-hero">
+          <div class="title-block">
+            <p class="eyebrow">اختبارات السبر</p>
+            <h1 id="monthly-probe-title">السبر الشهري</h1>
+            <p class="lead">اختيار طلاب من حلقات المسجد لطباعة كشف السبر الشهري مع تحديد نوع السبر والجزء لكل طالب.</p>
+          </div>
+          <div class="monthly-probe-actions">
+            <button class="secondary-button monthly-probe-print-button" id="monthly-probe-print-button" type="button">تحويل المختارين إلى PDF</button>
+          </div>
+        </div>
+
+        <div class="monthly-probe-summary" aria-label="ملخص السبر الشهري">
+          <div class="monthly-probe-stat">
+            <span>عدد الطلاب</span>
+            <strong id="monthly-probe-count">0</strong>
+          </div>
+          <div class="monthly-probe-stat">
+            <span>المختارون</span>
+            <strong id="monthly-probe-selected-count">0</strong>
+          </div>
+          <div class="monthly-probe-stat">
+            <span>الحلقات</span>
+            <strong id="monthly-probe-rings-count">0</strong>
+          </div>
+          <div class="monthly-probe-stat">
+            <span>أنواع السبر</span>
+            <strong id="monthly-probe-stage-summary">حسب اختيار الطلاب</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="monthly-probe-tools" aria-label="أدوات السبر الشهري">
+        <div class="field">
+          <label for="monthly-probe-search">بحث عن طالب</label>
+          <input id="monthly-probe-search" type="search" autocomplete="off" placeholder="اكتب الاسم أو الحلقة أو المدرس">
+        </div>
+        <div class="field">
+          <label for="monthly-probe-stage">نوع سبر افتراضي</label>
+          <select id="monthly-probe-stage">
+            <option value="سبر مرحلي">سبر مرحلي</option>
+            <option value="سبر مركزي">سبر مركزي</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="monthly-probe-ring-filter">الحلقة</label>
+          <select id="monthly-probe-ring-filter">
+            <option value="">كل الحلقات</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="monthly-probe-category-filter">الفئة</label>
+          <select id="monthly-probe-category-filter">
+            <option value="">كل الفئات</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="monthly-probe-teacher-filter">المدرس</label>
+          <select id="monthly-probe-teacher-filter">
+            <option value="">كل المدرسين</option>
+          </select>
+        </div>
+        <div class="monthly-probe-tool-actions">
+          <button class="secondary-button compact-button" id="monthly-probe-select-visible" type="button">تحديد الظاهر</button>
+          <button class="ghost-button compact-button" id="monthly-probe-clear-selection" type="button">إلغاء التحديد</button>
+        </div>
+      </section>
+
+      <section class="monthly-probe-table-panel" aria-labelledby="monthly-probe-table-title">
+        <div class="section-heading">
+          <h2 id="monthly-probe-table-title">قائمة طلاب السبر</h2>
+          <p class="form-message" id="monthly-probe-result-summary" aria-live="polite"></p>
+        </div>
+
+        <div class="monthly-probe-table-wrap">
+          <table class="monthly-probe-table">
+            <thead>
+              <tr>
+                <th>اختيار</th>
+                <th>الرقم</th>
+                <th>اسم الطالب</th>
+                <th>الحلقة</th>
+                <th>استاذ الحلقة</th>
+                <th>اسم الأب</th>
+                <th>المواليد</th>
+                <th>رقم الأب</th>
+                <th>نوع السبر</th>
+                <th>الجزء</th>
+              </tr>
+            </thead>
+            <tbody id="monthly-probe-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div id="monthly-probe-print-root" class="monthly-probe-print-root" aria-hidden="true"></div>
+
+    <script src="mosque-rings-data.js?v=20260709-imported-student-data-v1"></script>
+    <script src="student-info-data.js?v=20260709-imported-student-data-v1"></script>
+    <script src="student-records.js?v=20260709-student-profile-edit-v1"></script>
+    <script src="monthly.js?v=20260709-imported-student-data-v1"></script>
+  </body>
+</html>

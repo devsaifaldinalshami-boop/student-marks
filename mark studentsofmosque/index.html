@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>نظام عرض علامات الطلاب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=20260708-ring-name-edit-v1">
+  </head>
+  <body data-page="home">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="الصفحة الرئيسية">
+        <span class="brand-mark" data-brand-mark>ق</span>
+        <span>
+          <strong data-institution-name>مسجد قباء</strong>
+          <small data-report-title>نتائج الامتحانات الدورية</small>
+        </span>
+      </a>
+      <nav class="nav-actions" aria-label="روابط النظام">
+        <a href="admin.html">لوحة الإدارة</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="search-panel" aria-labelledby="main-title">
+        <div class="title-block">
+          <p class="eyebrow">بوابة أولياء الأمور</p>
+          <h1 id="main-title">نظام عرض علامات الطلاب</h1>
+          <p class="lead">اكتب اسم الطالب كاملًا أو جزءًا منه لعرض نتيجته وطباعتها.</p>
+        </div>
+
+        <form class="search-form" id="student-search-form">
+          <label for="student-search">اسم الطالب</label>
+          <div class="search-row">
+            <input id="student-search" name="student-search" type="search" autocomplete="off" placeholder="مثال: أحمد محمد">
+            <button class="primary-button" type="submit">بحث</button>
+          </div>
+        </form>
+
+        <p class="muted" id="home-summary" aria-live="polite"></p>
+      </section>
+
+      <section class="results-region" id="results-region" aria-live="polite">
+        <div class="empty-state">
+          <h2>ابدأ بالبحث عن اسم الطالب</h2>
+          <p>يدعم البحث أجزاء الاسم، ويتجاهل أغلب الفروقات في المسافات والتشكيل.</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="print-root" class="print-root" aria-hidden="true"></div>
+
+    <script src="data.js?v=20260704-subject-name-v1"></script>
+    <script src="script.js?v=20260708-ring-name-edit-v1"></script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>حلقات المسجد | مسجد قباء</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=20260708-first-fourth-grade-students-v1">
+  </head>
+  <body data-page="rings">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="الصفحة الرئيسية">
+        <span class="brand-mark brand-logo-mark">
+          <img src="assets/qobaa-logo.png" alt="">
+        </span>
+        <span>
+          <strong>مسجد قباء</strong>
+          <small>حلقات المسجد</small>
+        </span>
+      </a>
+      <nav class="nav-actions" aria-label="روابط النظام">
+        <a class="admin-nav-link" href="admin.html">لوحة الإدارة</a>
+        <a class="students-nav-link" href="students.html">بيانات الطلاب</a>
+      </nav>
+    </header>
+
+    <main class="page-shell rings-shell" id="rings-main">
+      <section class="rings-page" aria-labelledby="rings-title">
+        <div class="rings-hero">
+          <div class="title-block">
+            <p class="eyebrow">إدارة الحلقات</p>
+            <h1 id="rings-title">حلقات المسجد</h1>
+            <p class="lead">عرض حلقات المسجد حسب الفئات، مع أسماء المدرسين وعدد الطلاب الحالي دون إضافة أسماء الطلاب الآن.</p>
+          </div>
+        </div>
+
+        <div class="rings-summary" aria-label="ملخص حلقات المسجد">
+          <div class="rings-stat">
+            <span>عدد الحلقات</span>
+            <strong id="rings-count">0</strong>
+          </div>
+          <div class="rings-stat">
+            <span>عدد الطلاب الحالي</span>
+            <strong id="rings-student-count">0</strong>
+          </div>
+          <div class="rings-stat">
+            <span>مدرسون محددون</span>
+            <strong id="rings-teacher-count">0</strong>
+          </div>
+          <div class="rings-stat">
+            <span>حلقات بلا اسم</span>
+            <strong id="rings-pending-count">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="rings-tools" id="rings-list-tools" aria-label="أدوات تصفية حلقات المسجد">
+        <div class="field">
+          <label for="rings-search">بحث عن حلقة أو مدرس</label>
+          <input id="rings-search" type="search" autocomplete="off" placeholder="اكتب اسم الحلقة أو المدرس">
+        </div>
+        <div class="field">
+          <label for="rings-category-filter">الفئة</label>
+          <select id="rings-category-filter">
+            <option value="">كل الفئات</option>
+          </select>
+        </div>
+        <button class="secondary-button rings-reset-button" id="rings-reset-button" type="button">عرض كل الحلقات</button>
+        <button class="secondary-button rings-category-pdf-button" id="rings-category-pdf-button" type="button">أسماء الفئة PDF</button>
+      </section>
+
+      <section class="rings-table-panel" id="rings-list-panel" aria-labelledby="rings-table-title">
+        <div class="section-heading">
+          <h2 id="rings-table-title">سجل الحلقات</h2>
+          <p class="form-message" id="rings-result-summary" aria-live="polite"></p>
+        </div>
+
+        <div class="rings-cards" id="rings-cards"></div>
+
+        <div class="rings-table-wrap">
+          <table class="rings-table">
+            <thead>
+              <tr>
+                <th>الحلقة</th>
+                <th>المدرس</th>
+                <th>الفئة</th>
+                <th>الصف</th>
+                <th>عدد الطلاب</th>
+                <th>الحالة</th>
+                <th>التفاصيل</th>
+              </tr>
+            </thead>
+            <tbody id="rings-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="rings-detail-panel" id="rings-detail-view" hidden></section>
+    </main>
+
+    <div id="print-root" class="print-root" aria-hidden="true"></div>
+
+    <script src="mosque-rings-data.js?v=20260709-imported-student-data-v1"></script>
+    <script src="rings.js?v=20260709-imported-student-data-v1"></script>
+  </body>
+</html>
